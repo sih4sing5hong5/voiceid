@@ -1,6 +1,0 @@
-Voiceid
-==============
-
-
-To install just type, as superuser:
-	python setup.py install
