@@ -1,0 +1,35 @@
+sudo: false
+language: python
+python:
+ - "2.7"
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - python-wxgtk2.8
+      - openjdk-7-jdk
+      - gstreamer0.10-plugins-base
+      - gstreamer0.10-plugins-good
+      - gstreamer0.10-plugins-bad
+      - gstreamer0.10-plugins-ugly
+      - gstreamer-tools
+      - sox
+      - mplayer
+
+install:
+ - pip install MplayerCtrl
+ - python setup.py install
+ - pip install python-coveralls
+
+branches:
+ only:
+  - master
+
+script:
+ - cd src
+ - coverage run -m unittest tests.test_sr tests.test_fm
+
+after_success:
+  - coverage report
+  - coveralls
